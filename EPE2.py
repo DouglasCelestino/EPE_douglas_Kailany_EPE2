@@ -20,3 +20,8 @@ def extrai_naipe(carta):
         return(carta[2])
     else:
         return(carta[1])
+
+def extrai_valor (carta):
+    if len(carta) == 3:
+        return carta[0]+ carta[1]
+    return carta[0]
