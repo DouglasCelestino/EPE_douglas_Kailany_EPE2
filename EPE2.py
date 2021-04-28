@@ -57,3 +57,11 @@ def lista_movimentos_possiveis(baralho,ind):
             return []
     else:
         return []
+
+
+def empilha (baralho,pI,pF):
+    alterada = baralho[pI]
+    baralho.remove(baralho[pI])
+    baralho.remove(baralho[pF])
+    baralho.insert(pF,alterada)
+    return baralho
