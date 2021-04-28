@@ -85,3 +85,19 @@ i = 0
 for c in baralho:
     print('{}.  {}'.format(i, c))
     i += 1
+# possível jogada 
+jogada = int(input(('Escolha uma carta (digite um número entre 0 e 51): ')))
+carta = baralho[jogada]
+verifica_jogada = lista_movimentos_possiveis(baralho, jogada)
+fim = 0
+#repetição do jogo
+while fim <= 52:
+    #se não houver jogadas possíveis
+    if verifica_jogada == []:
+        print('A carta {} não pode ser movida. Por favor, digite um número entre 1 e 51): '.format(carta))
+    #se houver a possibilidade de empilhar sobre a anterior
+    elif verifica_jogada == [1]:
+        fim += 1
+        empilhar = empilha(baralho, jogada, jogada - 1)
+        i = 0
+        print('O estado atual do baralho é: ')
