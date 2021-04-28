@@ -1,31 +1,34 @@
-print ('Atividade EPE2')
 import random
 def cria_baralho():
-    naipes = ['♠','♥','♦','♣']
-    termos = ['A','2','3','4','5','6','7','8','9','10','J','Q','K']
-    Baralho = []
-
-    for e in termos:
-        juntar1 = e + naipes[0]
-        juntar2 = e + naipes[1]
-        juntar3 = e + naipes[2]
-        juntar4 = e + naipes[3]
-        Baralho.append(juntar1)
-        Baralho.append(juntar2)
-        Baralho.append(juntar3)
-        Baralho.append(juntar4)
-    return Baralho
+    naipes = ['♣','♥','♠','♦']
+    numeros= ['A','2','3','4','5','6','7','8','9','10','J','Q','K']
+    cartas_paus = []
+    cartas_copas = []
+    cartas_espadas = []
+    cartas_ouros = []
+    for c in numeros:
+        conc_paus = c + naipes[0]
+        cartas_paus.append(conc_paus)
+        conc_copas = c + naipes[1]
+        cartas_copas.append(conc_copas)
+        conc_espadas = c + naipes[2]
+        cartas_espadas.append(conc_espadas)
+        conc_ouros = c + naipes[3]
+        cartas_ouros.append(conc_ouros)
+    lista_baralho = cartas_paus+cartas_copas+cartas_espadas+ cartas_ouros
+    return lista_baralho
 
 def extrai_naipe(carta):
     if carta[0] == '1':
         return(carta[2])
     else:
         return(carta[1])
-
-def extrai_valor (carta):
-    if len(carta) == 3:
-        return carta[0]+ carta[1]
-    return carta[0]
+    
+def extrai_valor(carta):
+    if carta[0] == '1':
+        return '10'
+    else:
+        return(carta[0])
 
 def lista_movimentos_possiveis(baralho,ind):
     naipe_carta = extrai_naipe(baralho[ind])
@@ -59,13 +62,12 @@ def lista_movimentos_possiveis(baralho,ind):
     else:
         return []
 
-
-def empilha (baralho,p0,pf):
-    nova = baralho[p0]
+def empilha(baralho, p0, pf):
+    novo = baralho[p0]
     baralho.remove(baralho[p0])
-    baralho[pf] = nova
+    baralho[pf] = novo
     return baralho
-
+   
 def possui_movimentos_possiveis(baralho):
     c = 0
     while c < len(baralho):
@@ -74,8 +76,6 @@ def possui_movimentos_possiveis(baralho):
             return True
         c += 1
     return False
-
-
 #criando o baralho e embaralhando em seguida
 baralho = cria_baralho()
 embaralhar = random.shuffle(baralho)
@@ -86,7 +86,7 @@ for c in baralho:
     print('{}.  {}'.format(i, c))
     i += 1
 # possível jogada 
-jogada = int(input(('Escolha uma carta (digite um número entre 0 e 51): ')))
+jogada = int(input(('Escolha uma carta (digite um número entre 0 e {}): '.format((len(baralho)-1)))))
 carta = baralho[jogada]
 verifica_jogada = lista_movimentos_possiveis(baralho, jogada)
 fim = 0
@@ -101,3 +101,36 @@ while fim <= 52:
         empilhar = empilha(baralho, jogada, jogada - 1)
         i = 0
         print('O estado atual do baralho é: ')
+        for c in baralho:
+            print('{}.  {}'.format(i, c))
+            i += 1
+    #se houver a possibilidade de empilhar sobre a terceira anterior
+    elif verifica_jogada == [3]:
+        fim += 1
+        empilhar = empilha(baralho, jogada, jogada - 3)
+        i = 0
+        print('O estado atual do baralho é: ')
+        for c in baralho:
+            print('{}.  {}'.format(i, c))
+            i += 1
+    #se houver duas possibilidades de jogada
+    elif verifica_jogada == [1, 3]:
+        fim += 1
+        carta = baralho[jogada]
+        carta_anterior = baralho[jogada - 1]
+        carta_terceira = baralho[jogada - 3]
+        escolha = 'Sobre qual carta você quer empilhar o {}?'.format(carta)
+        opcao1 = ('1. {}'.format(carta_anterior))
+        opcao2 = ('2. {}'.format(carta_terceira))
+        print(escolha)
+        print(opcao1)
+        print(opcao2)
+        escolhida = int(input(('Escolha 1 ou 2: ')))
+        #se a escolha for 1, substitua
+        if escolhida == 1:
+            empilhar = empilha(baralho, jogada, jogada - 1)
+            i = 0
+            print('O estado atual do baralho é: ')
+            for c in baralho:
+                print('{}.  {}'.format(i, c))
+                i += 1
