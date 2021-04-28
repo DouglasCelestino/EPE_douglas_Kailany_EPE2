@@ -1,4 +1,5 @@
 print ('Atividade EPE2')
+import random
 def cria_baralho():
     naipes = ['♠','♥','♦','♣']
     termos = ['A','2','3','4','5','6','7','8','9','10','J','Q','K']
@@ -73,3 +74,14 @@ def possui_movimentos_possiveis(baralho):
             return True
         c += 1
     return False
+
+
+#criando o baralho e embaralhando em seguida
+baralho = cria_baralho()
+embaralhar = random.shuffle(baralho)
+
+print('O estado atual do baralho é: ')
+i = 0
+for c in baralho:
+    print('{}.  {}'.format(i, c))
+    i += 1
