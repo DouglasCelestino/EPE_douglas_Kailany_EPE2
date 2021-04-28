@@ -65,3 +65,12 @@ def empilha (baralho,pI,pF):
     baralho.remove(baralho[pF])
     baralho.insert(pF,alterada)
     return baralho
+
+def possui_movimentos_possiveis(baralho):
+    c = 0
+    while c < len(baralho):
+        movimento = lista_movimentos_possiveis(baralho, c)
+        if movimento != []:
+            return True
+        c += 1
+    return False
