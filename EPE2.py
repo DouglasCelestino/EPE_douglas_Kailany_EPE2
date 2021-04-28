@@ -1,3 +1,5 @@
+print ("Quer se divertir jogando Paciência Acordeão???")
+inicio = input("Tecle ENTER para proceguir:\n")
 import random
 def cria_baralho():
     naipes = ['♣','♥','♠','♦']
@@ -76,6 +78,8 @@ def possui_movimentos_possiveis(baralho):
             return True
         c += 1
     return False
+
+()
 #criando o baralho e embaralhando em seguida
 baralho = cria_baralho()
 embaralhar = random.shuffle(baralho)
@@ -85,15 +89,19 @@ i = 0
 for c in baralho:
     print('{}.  {}'.format(i, c))
     i += 1
-# possível jogada 
+# definição para o uso do while
 jogada = int(input(('Escolha uma carta (digite um número entre 0 e {}): '.format((len(baralho)-1)))))
-carta = baralho[jogada]
-verifica_jogada = lista_movimentos_possiveis(baralho, jogada)
+if jogada >= 0 and jogada <= 51:
+    carta = baralho[jogada]
+    verifica_jogada = lista_movimentos_possiveis(baralho, jogada)    
 fim = 0
 #repetição do jogo
 while fim <= 52:
+    if  jogada < 0 or jogada > len(baralho) - 1:
+        print('Posição inválida. Por favor, digite um número entre 1 e {}):'.format(len(baralho) - 1))
     #se não houver jogadas possíveis
-    if verifica_jogada == []:
+    elif verifica_jogada == []:
+        carta = baralho[jogada]
         print('A carta {} não pode ser movida. Por favor, digite um número entre 1 e 51): '.format(carta))
     #se houver a possibilidade de empilhar sobre a anterior
     elif verifica_jogada == [1]:
@@ -157,10 +165,14 @@ while fim <= 52:
                 k = False
             if d > 52:
                 print('Você perdeu :(')
-                print('Quer jogar novamente? (digite s ou n)')
+                decisao = print('Quer jogar novamente? (digite s ou n)')
+                if decisao == 's':
+                    print('JOGUE NOVAMENTE')
             d += 1
     jogada = int(input(('Escolha uma carta (digite um número entre 0 e {}): '.format(len(baralho)-1))))
-    verifica_jogada = lista_movimentos_possiveis(baralho, jogada)
+    if jogada >= 0 and jogada <= 51:
+        carta = baralho[jogada]
+        verifica_jogada = lista_movimentos_possiveis(baralho, jogada)   
 
 print('Você ganhou')
 print('Quer jogar novamente? (digite s ou n)')
