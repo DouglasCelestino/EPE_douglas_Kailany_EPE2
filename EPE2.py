@@ -126,7 +126,11 @@ while fim <= 52:
         print(opcao1)
         print(opcao2)
         escolhida = int(input(('Escolha 1 ou 2: ')))
+        while escolhida >= 3 or escolhida <= 0:
+            print('Opção inválida. Sobre qual carta você quer empilhar o {}? '.format(carta))
+            escolhida = int(input(('Escolha 1 ou 2: ')))
         #se a escolha for 1, substitua
+
         if escolhida == 1:
             empilhar = empilha(baralho, jogada, jogada - 1)
             i = 0
@@ -134,3 +138,29 @@ while fim <= 52:
             for c in baralho:
                 print('{}.  {}'.format(i, c))
                 i += 1
+
+            #se a escolha for 2, substitua
+        elif escolhida == 2:
+            empilhar = empilha(baralho, jogada, jogada - 3)
+            i = 0
+            print('O estado atual do baralho é: ')
+            for c in baralho:
+                print('{}.  {}'.format(i, c))
+                i += 1
+
+        #marcador para ver se o usuário perdeu
+        k = True
+        d = 0
+        while k:
+            verifica_perdeu = lista_movimentos_possiveis(baralho, d)
+            if verifica_perdeu != []:
+                k = False
+            if d > 52:
+                print('Você perdeu :(')
+                print('Quer jogar novamente? (digite s ou n)')
+            d += 1
+    jogada = int(input(('Escolha uma carta (digite um número entre 0 e {}): '.format(len(baralho)-1))))
+    verifica_jogada = lista_movimentos_possiveis(baralho, jogada)
+
+print('Você ganhou')
+print('Quer jogar novamente? (digite s ou n)')
