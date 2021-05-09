@@ -25,16 +25,16 @@ def cria_baralho():
     return lista_baralho
 
 def extrai_naipe(carta):
-    if carta[0] == '1':
-        return(carta[2])
+    if carta[8] == '1':
+        return(carta[10])
     else:
-        return(carta[1])
+        return(carta[9])
     
 def extrai_valor(carta):
-    if carta[0] == '1':
+    if carta[8] == '1':
         return '10'
     else:
-        return(carta[0])
+        return(carta[8])
 
 def lista_movimentos_possiveis(baralho,ind):
     naipe_carta = extrai_naipe(baralho[ind])
