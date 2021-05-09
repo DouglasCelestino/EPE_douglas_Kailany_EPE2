@@ -10,13 +10,17 @@ def cria_baralho():
     cartas_ouros = []
     for c in numeros:
         conc_paus = c + naipes[0]
-        cartas_paus.append(conc_paus)
+        cor_paus = ('\033[47;30m{}\033[m'.format(conc_paus))
+        cartas_paus.append(cor_paus)
         conc_copas = c + naipes[1]
-        cartas_copas.append(conc_copas)
+        cor_copas = ('\033[47;31m{}\033[m'.format(conc_copas))
+        cartas_copas.append(cor_copas)
         conc_espadas = c + naipes[2]
-        cartas_espadas.append(conc_espadas)
+        cor_espadas = ('\033[47;30m{}\033[m'.format(conc_espadas))
+        cartas_paus.append(cor_espadas)
         conc_ouros = c + naipes[3]
-        cartas_ouros.append(conc_ouros)
+        cor_ouros = ('\033[47;31m{}\033[m'.format(conc_ouros))
+        cartas_copas.append(cor_ouros)
     lista_baralho = cartas_paus+cartas_copas+cartas_espadas+ cartas_ouros
     return lista_baralho
 
