@@ -1,5 +1,5 @@
-print ("Quer se divertir jogando Paciência Acordeão???")
-inicio = input("Tecle ENTER para proseguir:\n")
+print ("\033[36mQuer se divertir jogando Paciência Acordeão???\033[m")
+inicio = input("\033[36mTecle ENTER para proseguir:\033[36m\n")
 import random
 def cria_baralho():
     naipes = ['♣','♥','♠','♦']
@@ -83,15 +83,16 @@ def possui_movimentos_possiveis(baralho):
         c += 1
     return False
 
-()
 #criando o baralho e embaralhando em seguida
 baralho = cria_baralho()
 embaralhar = random.shuffle(baralho)
 
+#Imprimindo baralho
 print('O estado atual do baralho é: ')
 i = 0
 for c in baralho:
     print('{}.  {}'.format(i, c))
+    print("")
     i += 1
 # definição para o uso do while
 jogada = int(input(('Escolha uma carta (digite um número entre 0 e {}): '.format((len(baralho)-1)))))
@@ -99,9 +100,10 @@ if jogada >= 0 and jogada <= 51:
     carta = baralho[jogada]
     verifica_jogada = lista_movimentos_possiveis(baralho, jogada)    
 fim = 0
+verificacao = len(baralho) - 1
 #repetição do jogo
 while fim <= 52:
-    if  jogada < 0 or jogada > len(baralho) - 1:
+    if  jogada < 0 or jogada > verificacao - fim:
         print('Posição inválida. Por favor, digite um número entre 1 e {}):'.format(len(baralho) - 1))
     #se não houver jogadas possíveis
     elif verifica_jogada == []:
@@ -115,6 +117,7 @@ while fim <= 52:
         print('O estado atual do baralho é: ')
         for c in baralho:
             print('{}.  {}'.format(i, c))
+            print("")
             i += 1
     #se houver a possibilidade de empilhar sobre a terceira anterior
     elif verifica_jogada == [3]:
@@ -124,6 +127,7 @@ while fim <= 52:
         print('O estado atual do baralho é: ')
         for c in baralho:
             print('{}.  {}'.format(i, c))
+            print("")
             i += 1
     #se houver duas possibilidades de jogada
     elif verifica_jogada == [1, 3]:
@@ -149,6 +153,7 @@ while fim <= 52:
             print('O estado atual do baralho é: ')
             for c in baralho:
                 print('{}.  {}'.format(i, c))
+                print("")
                 i += 1
 
             #se a escolha for 2, substitua
@@ -158,25 +163,30 @@ while fim <= 52:
             print('O estado atual do baralho é: ')
             for c in baralho:
                 print('{}.  {}'.format(i, c))
+                print("")
                 i += 1
-
-        #marcador para ver se o usuário perdeu
-        k = True
-        d = 0
-        while k:
-            verifica_perdeu = lista_movimentos_possiveis(baralho, d)
-            if verifica_perdeu != []:
-                k = False
-            if d > 52:
-                print('Você perdeu :(')
-                decisao = print('Quer jogar novamente? (digite s ou n)')
-                if decisao == 's':
-                    print('JOGUE NOVAMENTE')
-            d += 1
+        
     jogada = int(input(('Escolha uma carta (digite um número entre 0 e {}): '.format(len(baralho)-1))))
-    if jogada >= 0 and jogada <= 51:
+    if jogada >= 0 and jogada <= verificacao - fim:
+        verificacao = len(baralho)
         carta = baralho[jogada]
         verifica_jogada = lista_movimentos_possiveis(baralho, jogada)   
 
+        #marcador para ver se o usuário perdeu
+    perdeu_ganhou = possui_movimentos_possiveis(baralho)
+    if perdeu_ganhou == False:
+        print('Você perdeu :(')
+        decisao = str(input('Quer jogar novamente? (digite s ou n)'))
+        decisao = decisao.lower()
+        if decisao == 's':
+            print('RODA O CÓDIGO NOVAMENTE FOLGADO!')
+        elif decisao == 'n':
+            print('Obrigado por jogar com a gente♥')
+    
 print('Você ganhou')
-print('Quer jogar novamente? (digite s ou n)')
+decisao = str(input('Quer jogar novamente? (digite s ou n)'))
+decisao = decisao.lower()
+if decisao == 's':
+    print('RODA O CÓDIGO NOVAMENTE FOLGADO!')
+elif decisao == 'n':
+    print('Obrigado por jogar com a gente♥')   
