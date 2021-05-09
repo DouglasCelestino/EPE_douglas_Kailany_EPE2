@@ -1,5 +1,5 @@
 print ("Quer se divertir jogando Paciência Acordeão???")
-inicio = input("Tecle ENTER para proceguir:\n")
+inicio = input("Tecle ENTER para proseguir:\n")
 import random
 def cria_baralho():
     naipes = ['♣','♥','♠','♦']
