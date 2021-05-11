@@ -100,10 +100,10 @@ if jogada >= 0 and jogada <= 51:
     carta = baralho[jogada]
     verifica_jogada = lista_movimentos_possiveis(baralho, jogada)    
 fim = 0
-verificacao = len(baralho) - 1
 #repetição do jogo
 while fim <= 52:
-    if  jogada < 0 or jogada > verificacao - fim:
+    verificacao = len(baralho) - 1
+    if  jogada < 0 or jogada > verificacao:
         print('Posição inválida. Por favor, digite um número entre 0 e {}):'.format(len(baralho) - 1))
     #se não houver jogadas possíveis
     elif verifica_jogada == []:
@@ -165,13 +165,12 @@ while fim <= 52:
                 print('{}.  {}'.format(i, c))
                 print("")
                 i += 1
-        
+
     jogada = int(input(('Escolha uma carta (digite um número entre 0 e {}): '.format(len(baralho)-1))))
-    if jogada >= 0 and jogada <= verificacao - fim:
-        verificacao = len(baralho)
+    if jogada >= 0 and jogada < verificacao:
         carta = baralho[jogada]
         verifica_jogada = lista_movimentos_possiveis(baralho, jogada)   
-
+    
         #marcador para ver se o usuário perdeu
     perdeu_ganhou = possui_movimentos_possiveis(baralho)
     if perdeu_ganhou == False and len(baralho) != 1:
