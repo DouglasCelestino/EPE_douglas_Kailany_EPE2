@@ -179,13 +179,17 @@ while fim <= 52:
         decisao = decisao.lower()
         if decisao == 's':
             print('RODA O CÓDIGO NOVAMENTE FOLGADO!')
+            break
         elif decisao == 'n':
             print('Obrigado por jogar com a gente♥')
+            break
+    elif perdeu_ganhou == False and len(baralho) == 1:
+        print('Você ganhou')
+        decisao = str(input('Quer jogar novamente? (digite s ou n)'))
+        decisao = decisao.lower()
+        if decisao == 's':
+            print('RODA O CÓDIGO NOVAMENTE FOLGADO!')
+        elif decisao == 'n':
+            print('Obrigado por jogar com a gente♥') 
     
-print('Você ganhou')
-decisao = str(input('Quer jogar novamente? (digite s ou n)'))
-decisao = decisao.lower()
-if decisao == 's':
-    print('RODA O CÓDIGO NOVAMENTE FOLGADO!')
-elif decisao == 'n':
-    print('Obrigado por jogar com a gente♥') 
+    
