@@ -188,4 +188,4 @@ decisao = decisao.lower()
 if decisao == 's':
     print('RODA O CÓDIGO NOVAMENTE FOLGADO!')
 elif decisao == 'n':
-    print('Obrigado por jogar com a gente♥')   
+    print('Obrigado por jogar com a gente♥') 
